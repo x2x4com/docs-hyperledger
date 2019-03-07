@@ -1,6 +1,5 @@
 # 系统需求
 
-## 文档版本
 序号 | 内容 | 更新人 | 更新日期 | 版本
 ---| --- | --- | --- | ---
 1 | 文档初始化 | 许向 | 2019-2-26 | 0.1
@@ -52,3 +51,55 @@ Golang 要求1.11x以上，并正确设定GOPATH
 ```
 sudo apt-get install python
 ```
+
+## Install Samples, Binaries and Docker Images
+
+官方提供了一个在线的脚本方便下载镜像，使用方法
+
+```
+curl -sSL http://bit.ly/2ysbOFE | bash -s -- <fabric> <fabric-ca> <thirdparty>
+```
+
+下载指定版本
+
+```
+curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.0
+```
+
+
+下载后会有这些二进制文件
+
+- configtxgen
+- configtxlator
+- cryptogen
+- discover
+- idemixgen
+- orderer
+- peer
+- fabric-ca-client
+
+请把这些文件的路径加入PATH
+
+```
+export PATH=<path to download location>/bin:$PATH
+```
+
+## 剖析工具脚本
+
+下载这个文件
+
+wget "http://bit.ly/2ysbOFE" fabric-bootstrap.sh
+
+核心5个部分，分别是
+
+1. 下载Fabric镜像
+2. 下载第三方组件镜像
+3. 下载CA镜像
+4. 下载二进制工具文件
+5. 下载Samples
+
+通过3个开关参数可以控制
+
+- `-d` 不下载docker镜像
+- `-s` 不下载fabric-samples
+- `-b` 不下载二进制文件
