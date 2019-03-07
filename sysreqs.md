@@ -88,7 +88,9 @@ export PATH=<path to download location>/bin:$PATH
 
 下载这个文件
 
+```
 wget "http://bit.ly/2ysbOFE" fabric-bootstrap.sh
+```
 
 核心5个部分，分别是
 

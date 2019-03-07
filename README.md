@@ -50,5 +50,5 @@ Enterprise requirements:
 
 
 ## 参考
-[What’s new in v1.4](https://hyperledger-fabric.readthedocs.io/en/latest/whatsnew.html)
-[Fabric1.4来了...有哪些新特性？](https://zhuanlan.zhihu.com/p/52420063)
+- [What’s new in v1.4](https://hyperledger-fabric.readthedocs.io/en/latest/whatsnew.html)
+- [Fabric1.4来了...有哪些新特性？](https://zhuanlan.zhihu.com/p/52420063)

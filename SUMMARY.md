@@ -11,6 +11,7 @@
 * [环境需求](sysreqs.md)
 * [部署](deploy/README.md)
   * [单机测试环境](deploy/single-dev.md)
+    * [byfn 启动过程详解](deploy/byfn-startup-details.md)
   * [多机测试环境](deploy/cluster-dev.md)
   * [生产环境](deploy/cluster-prod.md)
 
