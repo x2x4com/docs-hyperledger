@@ -24,7 +24,7 @@ export PATH=${PWD}/../bin:${PWD}:$PATH
 export FABRIC_CFG_PATH=${PWD}
 export CLI_TIMEOUT=10
 export CLI_DELAY=3
-export CHANNEL_NAME="mychannel"
+export CHANNEL_NAME="bidpoc_items"
 export COMPOSE_FILE=docker-compose-cli.yaml
 export COMPOSE_FILE_COUCH=docker-compose-couch.yaml
 export COMPOSE_FILE_ORG3=docker-compose-org3.yaml
@@ -36,6 +36,8 @@ export VERBOSE=true
 CHANNEL_NAME 是所要创建的频道的名字
 
 ## 证书
+
+在生成环境中，将使用Fabric CA Server来统一管理证书，使用它来和业务做深度的整合。
 
 证书（certificate）是Fabric中权限管理的基础。目前采用了基于ECDSA算法的非对称加密算法来生成公钥和私钥，证书格式则采用了X.509的标准规范。
 
@@ -87,6 +89,10 @@ PeerOrgs:
 OrdererOrgs:
   - Name: Orderer
     Domain: union.bidpoc.com
+    CA:
+      Country: CN
+      Province: Shanghai
+      Locality: Shanghai
     Specs:
       - Hostname: orderer
 PeerOrgs:
@@ -132,13 +138,71 @@ crypto-config
 └── peerOrganizations
 ```
 
-先看
+ordererOrganizations是Order服务组织的配置
+
+peerOrganizations是节点
+
+先看ordererOrganizations/union.bidpoc.com/ca
 
 ```
 crypto-config/ordererOrganizations/union.bidpoc.com/ca/
 ├── ca.union.bidpoc.com-cert.pem
 └── daee5bdd4a3fa068ba0fca479f27bdca8db93631aabfe10362a4ce87f21ef876_sk
 ```
+ca.union.bidpoc.com-cert.pem是union.bidpoc.com这个组织order的根CA证书
+
+进入ca根证书的目录
+
+```
+cd crypto-config/ordererOrganizations/union.bidpoc.com/ca/
+```
+
+使用openssl可以查看一下这张证书
+
+```
+openssl x509 -in ca.union.bidpoc.com-cert.pem -text -noout
+```
+
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            14:51:0b:b1:38:d4:d7:04:57:56:52:91:05:50:6a:e9
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=CN, ST=Shanghai, L=Shanghai, O=union.bidpoc.com, CN=ca.union.bidpoc.com
+        Validity
+            Not Before: Mar 11 10:13:00 2019 GMT
+            Not After : Mar  8 10:13:00 2029 GMT
+        Subject: C=CN, ST=Shanghai, L=Shanghai, O=union.bidpoc.com, CN=ca.union.bidpoc.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:cd:61:2b:f8:1b:2d:19:64:5b:94:25:b8:0c:c6:
+                    74:28:cc:57:0b:e2:3d:7a:c2:fe:ac:24:76:f3:93:
+                    0c:3a:85:a6:83:33:06:1a:d2:65:19:e0:dd:0b:6b:
+                    ff:c5:b6:7f:d5:3c:3b:83:1f:31:96:8a:44:9d:87:
+                    80:5b:6e:49:2f
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment, Certificate Sign, CRL Sign
+            X509v3 Extended Key Usage:
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Key Identifier:
+                93:00:72:F6:C7:62:3F:72:16:0B:DB:EC:E5:2E:92:CB:AC:20:C6:77:1C:32:1E:0E:DF:DC:DC:01:B3:E0:EB:78
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:21:00:c1:72:79:40:c7:b4:e7:de:00:82:de:3e:53:
+         da:57:6e:fc:d6:fe:30:64:12:6c:60:f0:50:67:2a:0e:64:b8:
+         93:02:20:53:f8:1b:fc:86:ec:91:37:6e:f7:d0:05:af:a0:57:
+         4e:50:28:29:01:f0:8c:1c:75:6c:74:74:ac:7f:3b:7b:0b
+```
+
+有空再细研究
 
 ...TODO
 

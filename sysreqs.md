@@ -84,7 +84,7 @@ curl -sSL http://bit.ly/2ysbOFE | bash -s -- 1.4.0
 export PATH=<path to download location>/bin:$PATH
 ```
 
-## 剖析工具脚本
+### 剖析工具脚本
 
 下载这个文件
 
@@ -105,3 +105,17 @@ wget "http://bit.ly/2ysbOFE" fabric-bootstrap.sh
 - `-d` 不下载docker镜像
 - `-s` 不下载fabric-samples
 - `-b` 不下载二进制文件
+
+### 环境准备工作
+
+在$HOME目录下准备环境
+
+```
+[ ! -d $HOME/fabric ] && mkdir $HOME/fabric
+```
+
+进入目录，执行一键脚本
+
+```
+cd $HOME/fabric && curl -sSL http://bit.ly/2ysbOFE | bash -- 1.4.0
+```

@@ -6,7 +6,7 @@
 
 ## 前提
 
-在 [系统准备](../sysreqs.md#install-samples-binaries-and-docker-images) 已经下载了二进制文件、镜像和samples
+在 [系统准备](../sysreqs.md#环境准备工作) 已经下载了二进制文件、镜像和samples
 
 ## 启动byfn
 

@@ -15,8 +15,14 @@
   * [多机测试环境](deploy/cluster-dev.md)
   * [生产环境](deploy/cluster-prod.md)
 
+## 运维管理
+* [架构分层](mgr/arch.md)
+* [CA管理](mgr/ca.md)
+* [节点管理](mgr/peer.md)
+
 ## 合约开发
 
 * [逻辑架构](https://zhuanlan.zhihu.com/p/35516337)
 * [ChainCode概念介绍](https://zhuanlan.zhihu.com/p/35419439)
-* [商业票据教程v14](develop/commercial_paper_v14.md)
+* [开发实例](develop/README.md)
+  * [Vehicle Sharing](develop/simple_dev_vehiclesharing.md)
