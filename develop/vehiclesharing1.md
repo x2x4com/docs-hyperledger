@@ -1,12 +1,9 @@
-# 客户端开发实例 - Vehicle Sharing
+# Vehicle Sharing 1 - 基本
 
 序号 | 内容 | 更新人 | 更新日期 | 版本
 ---| --- | --- | --- | ---
 1 | 文档初始化 | 许向 | 2019-3-4 | 0.1
 
-## 项目介绍
-
-项目原型参考了[IBM-徐春雷-Hyperledger Fabric 实践与分析](https://www.ibm.com/developerworks/cn/cloud/library/cl-lo-hyperledger-fabric-practice-analysis2/index.html?ca=drs-)的系列文章，下面基础部分围绕此基准展开
 
 ## 环境准备
 
@@ -146,7 +143,7 @@ export CORE_PEER_TLS_CERT_FILE="/opt/gopath/src/github.com/hyperledger/fabric/pe
 export CORE_PEER_TLS_KEY_FILE="/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key"
 ```
 
-### 安装chaincode
+### Install && Instantiate
 
 ```bash
 source ./scripts/setparas.sh peerenv 0 1
@@ -168,7 +165,7 @@ peer chaincode instantiate -o $ORDERER_ADDRESS --tls --cafile $ORDERER_CA -C $CH
 - instantiate 实例化代码
 
 
-### 更新chaincode
+### Install && upgrade
 
 更新和安装类似，VERSION 要不同于之前的版本
 
@@ -444,6 +441,7 @@ source ./scripts/setparas.sh
    {"brand":"FBC","createTime":0,"id":"C123","objectType":"VEHICLE","ownerId":"","price":123.55,"status":0,"userId":""}
    ```
 
+### SDK中调用
 
 
 
@@ -455,3 +453,5 @@ source ./scripts/setparas.sh
 ## 参考
 - [Fabric 区块链智能合约 Chaincode 与客户端程序开发全新实例教程](https://www.ibm.com/developerworks/cn/cloud/library/cl-lo-hyperledger-fabric-practice-analysis2/index.html?ca=drs-)
 - [Developing Applications](https://hyperledger-fabric.readthedocs.io/en/latest/developapps/developing_applications.html)
+- [1](http://www.cnblogs.com/studyzy/p/7360733.html)
+- [2](https://blog.csdn.net/fangdengfu123/article/details/80579057)
